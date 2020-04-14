@@ -3,18 +3,20 @@ package main
 import (
 	"crypto/ecdsa"
 	"crypto/rand"
+	"encoding/hex"
 	"fmt"
 	"log"
 
+	"github.com/coindex/coindex-keypair/keypair"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 )
 
-func generateKeyPair() error {
+func generateKeyPair() (string, error) {
 	b := make([]byte, 32)
 	_, err := rand.Read(b)
 	if err != nil {
-		return err
+		return "", err
 	}
 
 	privateKey, err := crypto.GenerateKey()
@@ -33,13 +35,17 @@ func generateKeyPair() error {
 	}
 
 	publicKeyBytes := crypto.FromECDSAPub(publicKeyECDSA)
-	fmt.Println(hexutil.Encode(publicKeyBytes)[62:])
+	pubk := hexutil.Encode(publicKeyBytes)[66:]
 
-	return nil
+	pubhex, _ := hex.DecodeString(pubk)
+	fmt.Println(len(pubhex))
+
+	return hexutil.Encode(publicKeyBytes)[62:], nil
 }
 
 func main() {
-	generateKeyPair()
+	//generateKeyPair()
+	keypair.Secp256k1()
 	// app := app.New()
 
 	// keypair.Show(app)
