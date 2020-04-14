@@ -4,6 +4,7 @@
   "description": "generate ripple keypairs",
   "main": "index.js",
   "dependencies": {
+    "@types/node": "^13.11.1",
     "cli-progress": "^3.7.0",
     "inquirer": "^7.1.0",
     "ripple-keypairs": "^1.0.0"
@@ -12,9 +13,9 @@
     "cli-interact": "^0.1.9"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "tsc"
   },
-  "bin": "src/index.js",
+  "bin": "dist/index.js",
   "author": "",
   "license": "ISC"
 }
