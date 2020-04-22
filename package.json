@@ -1,0 +1,52 @@
+{
+  "name": "ripple-keygen",
+  "version": "0.1.0",
+  "description": "a tool to generate (multiple) ripple keypairs offline",
+  "author": {
+    "name": "Atharva Pandey ( @gopherine )",
+    "email": "arvee@coindex.de",
+    "url": "https://coindex.de"
+  },
+  "contributors": [
+    {
+      "name": "Sergio Martins Pereira ( @smartinspereira )",
+      "email": "sergio@coindex.de",
+      "url": "https://coindex.de"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "coindex",
+    "ripple",
+    "xrp"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/coindex/ripple-offline-keygen"
+  },
+  "main": "dist/index.js",
+  "scripts": {
+    "preinstall": "npx typesync",
+    "build": "npx --no-install -p typescript tsc",
+    "package": "npm run build && npx --no-install pkg -t node12-linux-x64,node12-macos-x64,node12-win-x64 -o bin/ripple-keygen dist/index.js"
+  },
+  "devDependencies": {
+    "@types/cli-progress": "3.4.2",
+    "@types/inquirer": "6.5.0",
+    "@types/node": "13.13.2",
+    "@types/prettier": "1.19.1",
+    "husky": "4.2.5",
+    "node": "14.0.0",
+    "pkg": "4.4.7",
+    "prettier": "1.19.1",
+    "prettylint": "1.0.0",
+    "typescript": "3.8.3",
+    "typesync": "0.6.1"
+  },
+  "dependencies": {
+    "cli-progress": "3.8.0",
+    "colors": "1.4.0",
+    "inquirer": "7.1.0",
+    "ripple-keypairs": "1.0.0"
+  }
+}
