@@ -48,6 +48,6 @@
     "colors": "1.4.0",
     "inquirer": "7.1.0",
     "ripple-keypairs": "1.0.0",
-    "stdio": "^2.1.1"
+    "stdio": "2.1.1"
   }
 }

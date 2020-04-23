@@ -15,7 +15,11 @@ To start interactive shell use the flag -i or --interactive and follow the steps
 
 By default the binary runs in this mode and generates a random keypair if no flag is passed
 
+<<<<<<< HEAD
 # Example: 
+=======
+## Example: 
+>>>>>>> ed9a5acb3e922cb4190a9af9223eee8e43d25617
 
 
 To generate key from a seed:
