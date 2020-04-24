@@ -37,7 +37,7 @@ const GenerateRandomKeypairs = () => {
 }
 
 
-const GenerateMultipleKeypairs = (ans:string, nok:number) => {
+const GenerateMultipleKeypairs = (ans:string, nok:number,path:string) => {
   switch (ans) {
     case 'y': {
       // create new progress bar
@@ -58,9 +58,9 @@ const GenerateMultipleKeypairs = (ans:string, nok:number) => {
       for (let i = 0; i < nok; i++) {
         const seed = generateSeed();
         const { ripple, address } = GenerateKeypairs(seed);
-        fs.writeFile('keypairs.txt', '', function() {});
+        fs.writeFile(path, '', function() {});
         fs.appendFile(
-          'keypairs.txt',
+            path,
           'Seed : ' +
             seed +
             '\n' +
@@ -150,7 +150,7 @@ inquirer
         rl.question(
           'Do you want the output inside a file? [y/n] : ',
           (ans: string) => {
-            GenerateMultipleKeypairs(ans, nok)
+            GenerateMultipleKeypairs(ans, nok,'')
             rl.close();
           },
         );
@@ -159,13 +159,14 @@ inquirer
   });
 }
 
-const cmd = (seed:string, multiple:boolean,file:boolean, nok:number[]) => {
+const cmd = (seed:string, multiple:boolean,file:boolean, keyArgs:any[]) => {
   if(seed) {
     const data = GenerateKeypairs(seed);
     PrintKeypairs(seed, data);
   } else if(multiple){
     const ans = file?'y':'n'
-    GenerateMultipleKeypairs(ans,nok[0])
+    const path = keyArgs[1]?keyArgs[1]+'/keypairs.txt':'keypairs.txt'
+    GenerateMultipleKeypairs(ans,keyArgs[0],path)
   } else {
     GenerateRandomKeypairs()
   }
@@ -181,7 +182,7 @@ const init = () => {
   if(interactive) {
     interactive_cmd()
   } else {
-    cmd(<string>seed,<boolean>multiple,<boolean>file, <number[]>args)
+    cmd(<string>seed,<boolean>multiple,<boolean>file, <any[]>args)
   }
 }
 
